@@ -1,38 +1,39 @@
-.App {
-  text-align: center;
+.axis path, .axis line, .axis text {
+  fill: none;
+  stroke: red;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.grid-line {
+  stroke: black;
+  stroke-opacity: 0.2;
+}
+.dot1 {
+  stroke: blueviolet;
+  fill: gray;
+  stroke-width: 1px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+
+.dot2 {
+  stroke: green;
+  fill: rebeccapurple;
+  stroke-width: 1px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+
+.data1 {
+  stroke: steelblue;
+  stroke-width: 2;
+  fill: none;
 }
 
-.App-link {
-  color: #61dafb;
+.data2 {
+  stroke: green;
+  stroke-width: 2;
+  fill: none;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.lines {
+  stroke:red;
+  stroke-width: 1;
 }
