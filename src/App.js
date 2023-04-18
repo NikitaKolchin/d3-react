@@ -17,24 +17,24 @@ function App() {
   const axisHeight = () => height - 2 * margin
   const rawData1 = useMemo(
     () => [
-      { date: date + 0 * 24 * 60 * 60 * 1000, value: 0 },
-      { date: date + 1 * 24 * 60 * 60 * 1000, value: 20 },
-      { date: date + 2 * 24 * 60 * 60 * 1000, value: 30 },
-      { date: date + 3 * 24 * 60 * 60 * 1000, value: 70 },
-      { date: date + 4 * 24 * 60 * 60 * 1000, value: 20 },
-      { date: date + 5 * 24 * 60 * 60 * 1000, value: 30 },
+      { date: date + 0 * 24 * 60 * 60 * 1000, lv: 0 },
+      { date: date + 1 * 24 * 60 * 60 * 1000, lv: 20 },
+      { date: date + 2 * 24 * 60 * 60 * 1000, lv: 30 },
+      { date: date + 3 * 24 * 60 * 60 * 1000, lv: 70 },
+      { date: date + 4 * 24 * 60 * 60 * 1000, lv: 20 },
+      { date: date + 5 * 24 * 60 * 60 * 1000, lv: 30 },
     ],
     [date]
   )
 
   const rawData2 = useMemo(
     () => [
-      { date: date + 0 * 24 * 60 * 60 * 1000, value: 0 },
-      { date: date + 1 * 24 * 60 * 60 * 1000, value: 40 },
-      { date: date + 2 * 24 * 60 * 60 * 1000, value: 60 },
-      { date: date + 3 * 24 * 60 * 60 * 1000, value: 90 },
-      { date: date + 4 * 24 * 60 * 60 * 1000, value: 50 },
-      { date: date + 5 * 24 * 60 * 60 * 1000, value: 10 },
+      { date: date + 0 * 24 * 60 * 60 * 1000, lv: 0 },
+      { date: date + 1 * 24 * 60 * 60 * 1000, lv: 40 },
+      { date: date + 2 * 24 * 60 * 60 * 1000, lv: 60 },
+      { date: date + 3 * 24 * 60 * 60 * 1000, lv: 90 },
+      { date: date + 4 * 24 * 60 * 60 * 1000, lv: 50 },
+      { date: date + 5 * 24 * 60 * 60 * 1000, lv: 10 },
     ],
     [date]
   )
@@ -90,13 +90,13 @@ function App() {
     setData1(
       rawData1.map((item) => ({
         x: xScale(item.date) + margin,
-        y: yScale(item.value) + margin,
+        y: yScale(item.lv) + margin,
       }))
     )
     setData2(
       rawData2.map((item) => ({
         x: xScale(item.date) + margin,
-        y: yScale(item.value) + margin,
+        y: yScale(item.lv) + margin,
       }))
     )
   }, [rawData1, rawData2, xScale, yScale])
