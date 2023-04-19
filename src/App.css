@@ -1,39 +1,27 @@
 .axis path, .axis line, .axis text {
-  fill: none;
-  stroke: red;
-}
-
-.grid-line {
-  stroke: black;
-  stroke-opacity: 0.2;
-}
-.dot1 {
-  stroke: blueviolet;
-  fill: gray;
-  stroke-width: 1px;
-}
+    fill: none;
+    stroke: red;
+  }
+  
+  .grid-line {
+    stroke: black;
+    stroke-opacity: 0.2;
+  }
 
 
-.dot2 {
-  stroke: green;
-  fill: rebeccapurple;
-  stroke-width: 1px;
-}
-
-
-.data1 {
-  stroke: steelblue;
-  stroke-width: 2;
-  fill: none;
-}
-
-.data2 {
-  stroke: green;
-  stroke-width: 2;
-  fill: none;
-}
-
-.lines {
-  stroke:red;
-  stroke-width: 1;
-}
+  .data1 {
+    stroke: steelblue;
+    stroke-width: 2;
+    fill: none;
+  }
+  
+  .data2 {
+    stroke: green;
+    stroke-width: 2;
+    fill: none;
+  }
+  
+  .lines {
+    stroke:red;
+    stroke-width: 1;
+  }
