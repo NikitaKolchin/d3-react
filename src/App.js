@@ -56,11 +56,12 @@ function App() {
   }
   return (
     <div className="App">
-      <button onClick={handleFilter}>Наложить фильтр</button>
-      <button onClick={handleReset}>Сбросить фильтр</button>
+      <button onClick={handleFilter} disabled={filtred}>Наложить фильтр</button>
+      <button onClick={handleReset} disabled={!filtred}>Сбросить фильтр</button>
       {checked.map((item, i) => (
         <div key={`checkbox${i}`}>
-          <input
+          <input 
+            disabled={filtred}
             type="checkbox"
             id={`checkbox${i}`}
             checked={item.checked}
@@ -71,12 +72,14 @@ function App() {
         </div>
       ))}
       <input
+        disabled={filtred}
         type="date"
         id="startdate"
         value={startDate}
         onChange={(e) => setStartDate(e.target.value)}
       />
       <input
+        disabled={filtred}
         type="date"
         id="enddate"
         value={endDate}
