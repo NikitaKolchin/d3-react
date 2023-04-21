@@ -1,7 +1,5 @@
 const Dot = (props) => {
   const {d} = props
-  console.log(d)
-
   return (
     <polygon
       stroke="green"

@@ -28,16 +28,42 @@ function Object(props) {
   const startValue = 4000
   const endValue = 0
 
-  const xScale = d3
-    .scaleTime()
-    .domain([startDate, endDate])
-    .range([0, axisWidth()])
-  const yScale = d3
-    .scaleLinear()
-    .domain([startValue, endValue])
-    .range([0, axisHeight()])
-
   useEffect(() => {
+    const xScale = d3
+      .scaleTime()
+      .domain([startDate, endDate])
+      .range([0, axisWidth()])
+
+    const yScale = d3
+      .scaleLinear()
+      .domain([startValue, endValue])
+      .range([0, axisHeight()])
+
+    const xAxis = d3
+      .axisBottom()
+      .scale(xScale)
+      .ticks(6)
+      .tickFormat(d3.timeFormat("%Y"))
+    const yAxis = d3.axisLeft().scale(yScale).ticks(4).tickFormat("")
+    d3.select(xAxisRef.current).call(xAxis)
+    d3.select(yAxisRef.current).call(yAxis)
+
+    const xGrid = d3
+      .axisBottom(xScale)
+      .ticks(6)
+      .tickFormat("")
+      .tickSize(-axisHeight())
+
+    d3.select(xGridRef.current).call(xGrid).classed("grid-line", true)
+
+    const yGrid = d3
+      .axisLeft(yScale)
+      .ticks(4)
+      .tickFormat("")
+      .tickSize(-axisWidth())
+
+    d3.select(yGridRef.current).call(yGrid).classed("grid-line", true)
+
     setDataPlan(
       object.dataPlan
         .map((item) => ({ ...item, date: item.date.getTime() }))
@@ -56,37 +82,20 @@ function Object(props) {
           status: item.status,
         }))
     )
-  }, [])
-
-  useEffect(() => {
-    const xAxis = d3
-      .axisBottom()
-      .scale(xScale)
-      .ticks(6)
-      .tickFormat(d3.timeFormat("%Y"))
-    const yAxis = d3.axisLeft().scale(yScale).ticks(10)
-    d3.select(xAxisRef.current).call(xAxis)
-    d3.select(yAxisRef.current).call(yAxis)
-
-    const xGrid = d3
-      .axisBottom(xScale)
-      .ticks(6)
-      .tickFormat("")
-      .tickSize(-axisHeight())
-
-    d3.select(xGridRef.current).call(xGrid).classed("grid-line", true)
-
-    const yGrid = d3
-      .axisLeft(yScale)
-      .ticks(10)
-      .tickFormat("")
-      .tickSize(-axisWidth())
-
-    d3.select(yGridRef.current).call(yGrid).classed("grid-line", true)
-  }, [])
+  }, [
+    axisHeight,
+    axisWidth,
+    endDate,
+    margin,
+    object.dataFact,
+    object.dataPlan,
+    startDate,
+  ])
 
   return (
     <div className="App">
+      <div style={{display: "flex", justifyContent:"center"}}>
+        <div style={{margin:"30px"}}>{object.name}</div>
       <svg width={width} height={height}>
         <g
           className="axis"
@@ -133,6 +142,7 @@ function Object(props) {
           ))}
         </g>
       </svg>
+      </div>
     </div>
   )
 }
