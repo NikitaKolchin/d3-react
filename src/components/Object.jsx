@@ -1,5 +1,6 @@
 import * as d3 from "d3"
 import Dot from "./Dot"
+import style from "./Object.module.css"
 import { useEffect, useRef, useState, useCallback } from "react"
 
 function Object(props) {
@@ -93,17 +94,17 @@ function Object(props) {
   ])
 
   return (
-    <div className="App">
-      <div style={{display: "flex", justifyContent:"center"}}>
+    <div>
+      <div className={style.name}>
         <div style={{margin:"30px"}}>{object.name}</div>
       <svg width={width} height={height}>
         <g
-          className="axis"
+          className={style.axis}
           ref={xAxisRef}
           transform={`translate(${margin}, ${height - margin})`}
         />
         <g
-          className="axis"
+          className={style.axis}
           ref={yAxisRef}
           transform={`translate(${margin}, ${margin})`}
         />
@@ -113,10 +114,10 @@ function Object(props) {
         />
         <g ref={yGridRef} transform={`translate(${margin}, ${margin})`} />
         <g>
-          <path className="data1" d={line(dataPlan)} />
+          <path className={style.data1} d={line(dataPlan)} />
         </g>
         <g>
-          <path className="data2" d={line(dataFact)} />
+          <path className={style.data2} d={line(dataFact)} />
         </g>
 
         <g>
@@ -133,7 +134,7 @@ function Object(props) {
           {dataPlan.map((item, i) => (
             <line
               key={i}
-              className="lines"
+              className={style.lines}
               x1={item.x}
               y1={item.y}
               x2={dataFact[i].x}

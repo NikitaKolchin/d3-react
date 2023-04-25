@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import "./App.css"
+import style from "./App.module.css"
 import Object from "./components/Object"
 import objs from "./objects"
 
@@ -56,38 +56,45 @@ function App() {
   }
   return (
     <div className="App">
-      <button onClick={handleFilter} disabled={filtred}>Наложить фильтр</button>
-      <button onClick={handleReset} disabled={!filtred}>Сбросить фильтр</button>
-      {checked.map((item, i) => (
-        <div key={`checkbox${i}`}>
-          <input 
-            disabled={filtred}
-            type="checkbox"
-            id={`checkbox${i}`}
-            checked={item.checked}
-            value={item.name}
-            onChange={handleToggle}
-          />{" "}
-          <label htmlFor={`checkbox${i}`}>{item.name}</label>
-        </div>
-      ))}
-      <input
-        disabled={filtred}
-        type="date"
-        id="startdate"
-        value={startDate}
-        onChange={(e) => setStartDate(e.target.value)}
-      />
-      <input
-        disabled={filtred}
-        type="date"
-        id="enddate"
-        value={endDate}
-        onChange={(e) => setEndDate(e.target.value)}
-      />
-      {objects.map((item, i) => (
-        <Object key={i} object={item} height={600} width={800} margin={35} />
-      ))}
+      <div className={style.filter}>
+        <button className={style.but} onClick={handleFilter} disabled={filtred}>Наложить фильтр</button>
+        <button className={style.but} onClick={handleReset} disabled={!filtred}>Сбросить фильтр</button>
+        {checked.map((item, i) => (
+          <div key={`checkbox${i}`}>
+            <input 
+              disabled={filtred}
+              type="checkbox"
+              id={`checkbox${i}`}
+              checked={item.checked}
+              value={item.name}
+              onChange={handleToggle}
+            />{" "}
+            <label htmlFor={`checkbox${i}`}>{item.name}</label>
+          </div>
+        ))}
+        <input
+          disabled={filtred}
+          type="date"
+          id="startdate"
+          value={startDate}
+          className={style.date}
+          onChange={(e) => setStartDate(e.target.value)}
+        />
+        <input
+          disabled={filtred}
+          type="date"
+          id="enddate"
+          value={endDate}
+          className={style.date}
+          onChange={(e) => setEndDate(e.target.value)}
+        />
+      </div>
+      <div className="charts">
+        {objects.map((item, i) => (
+          <Object key={i} object={item} height={600} width={800} margin={35} />
+        ))}
+      </div>
+      
     </div>
   )
 }

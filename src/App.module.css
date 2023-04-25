@@ -1,0 +1,28 @@
+.App {
+  max-width: 1080px;
+  margin: auto;
+  font-family: 'Roboto', sans-serif;
+}
+
+.filters {
+  margin: 10px;
+}
+
+.date {
+  margin-right: 5px;
+  font-size: large;
+  border-radius: 5px;
+  border: 2px solid green;
+  width: 155px;
+}
+
+.but {
+  width: 160px;
+  height: 27px;
+  border-radius: 5px;
+  font-family: 'Roboto', sans-serif;
+  font-size: medium;
+  background-color: white;
+  border: 2px solid green;
+  margin-right: 5px;
+}
