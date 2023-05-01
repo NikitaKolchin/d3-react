@@ -26,3 +26,6 @@
   border: 2px solid green;
   margin-right: 5px;
 }
+.error {
+  color: red;
+}

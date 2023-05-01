@@ -16,7 +16,6 @@ function App() {
   const [error, setError] = useState("")
 
   useEffect(() => {
-    console.log(new Date(startDate))
     if (filtred) {
       objects.forEach((obj) => {
         obj.dataPlan = obj.dataPlan.filter(
@@ -94,8 +93,8 @@ function App() {
           className={style.date}
           onChange={(e) => setEndDate(e.target.value)}
         />
+        {error&&<span className={style.error}>{error}</span>}
       </div>
-      {error&&<div>{error}</div>}
       <div className="charts">
         {objects.map((item, i) => (
           <Object key={i} object={item} height={600} width={800} margin={35} />
