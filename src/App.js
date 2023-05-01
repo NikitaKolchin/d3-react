@@ -13,6 +13,7 @@ function App() {
   )
   const [objects, setObjects] = useState(structuredClone(objs))
   const [filtred, setFiltred] = useState(false)
+  const [error, setError] = useState("")
 
   useEffect(() => {
     console.log(new Date(startDate))
@@ -48,14 +49,19 @@ function App() {
   }
 
   const handleFilter = () => {
+    if (new Date(startDate) >= new Date(endDate)) {
+      setError("Дата начала должна быть больше даты окончания")
+      return
+    }
     setFiltred(true)
+    setError("")
   }
 
   const handleReset = () => {
     setFiltred(false)
   }
   return (
-    <div className="App">
+    <div className={style.App}>
       <div className={style.filter}>
         <button className={style.but} onClick={handleFilter} disabled={filtred}>Наложить фильтр</button>
         <button className={style.but} onClick={handleReset} disabled={!filtred}>Сбросить фильтр</button>
@@ -89,6 +95,7 @@ function App() {
           onChange={(e) => setEndDate(e.target.value)}
         />
       </div>
+      {error&&<div>{error}</div>}
       <div className="charts">
         {objects.map((item, i) => (
           <Object key={i} object={item} height={600} width={800} margin={35} />
