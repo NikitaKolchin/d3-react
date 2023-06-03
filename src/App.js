@@ -12,11 +12,11 @@ function App() {
     objs.map((item) => ({ name: item.name, checked: true }))
   )
   const [objects, setObjects] = useState(structuredClone(objs))
-  const [filtred, setFiltred] = useState(false)
+  const [filtered, setFiltered] = useState(false)
   const [error, setError] = useState("")
 
   useEffect(() => {
-    if (filtred) {
+    if (filtered) {
       objects.forEach((obj) => {
         obj.dataPlan = obj.dataPlan.filter(
           (item) =>
@@ -34,7 +34,7 @@ function App() {
       setObjects(structuredClone(objs))
       setChecked(objs.map((item) => ({ name: item.name, checked: true })))
     }
-  }, [filtred])
+  }, [filtered])
 
   const handleToggle = (e) => {
     const newChecked = checked.map((item) => {
@@ -52,22 +52,22 @@ function App() {
       setError("Дата начала должна быть больше даты окончания")
       return
     }
-    setFiltred(true)
+    setFiltered(true)
     setError("")
   }
 
   const handleReset = () => {
-    setFiltred(false)
+    setFiltered(false)
   }
   return (
     <div className={style.App}>
       <div className={style.filter}>
-        <button className={style.but} onClick={handleFilter} disabled={filtred}>Наложить фильтр</button>
-        <button className={style.but} onClick={handleReset} disabled={!filtred}>Сбросить фильтр</button>
+        <button className={style.but} onClick={handleFilter} disabled={filtered}>Наложить фильтр</button>
+        <button className={style.but} onClick={handleReset} disabled={!filtered}>Сбросить фильтр</button>
         {checked.map((item, i) => (
           <div key={`checkbox${i}`}>
             <input 
-              disabled={filtred}
+              disabled={filtered}
               type="checkbox"
               id={`checkbox${i}`}
               checked={item.checked}
@@ -78,7 +78,7 @@ function App() {
           </div>
         ))}
         <input
-          disabled={filtred}
+          disabled={filtered}
           type="date"
           id="startdate"
           value={startDate}
@@ -86,7 +86,7 @@ function App() {
           onChange={(e) => setStartDate(e.target.value)}
         />
         <input
-          disabled={filtred}
+          disabled={filtered}
           type="date"
           id="enddate"
           value={endDate}
