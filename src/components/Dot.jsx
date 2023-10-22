@@ -1,5 +1,13 @@
+import { useEffect } from "react"
+
 const Dot = (props) => {
   const {d} = props
+  useEffect(() => {
+    console.log("effect")
+
+
+  }, [])
+  
   return (
     <polygon
       stroke="green"

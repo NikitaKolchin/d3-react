@@ -45,6 +45,7 @@ function Object(props) {
       .scale(xScale)
       .ticks(6)
       .tickFormat(d3.timeFormat("%Y"))
+
     const yAxis = d3.axisLeft().scale(yScale).ticks(4).tickFormat("")
     d3.select(xAxisRef.current).call(xAxis)
     d3.select(yAxisRef.current).call(yAxis)

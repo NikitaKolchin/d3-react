@@ -3,6 +3,9 @@ import style from "./App.module.css"
 import Object from "./components/Object"
 import objs from "./objects"
 
+const worker = new Worker(new URL('./deep-thought.js', import.meta.url));
+
+
 function App() {
   const [startDate, setStartDate] = useState(
     new Date().toISOString().slice(0, 10)
@@ -14,6 +17,17 @@ function App() {
   const [objects, setObjects] = useState(structuredClone(objs))
   const [filtered, setFiltered] = useState(false)
   const [error, setError] = useState("")
+
+  useEffect(() => {
+    worker.postMessage({
+      question:
+        100000000000,
+    });
+    worker.onmessage = ({ data: { answer } }) => {
+      console.log(answer);
+    };
+  }, [])
+  
 
   useEffect(() => {
     if (filtered) {
