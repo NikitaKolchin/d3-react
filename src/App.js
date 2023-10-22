@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useRef } from "react"
 import style from "./App.module.css"
 import Object from "./components/Object"
 import objs from "./objects"
@@ -7,6 +7,7 @@ const worker = new Worker(new URL('./deep-thought.js', import.meta.url));
 
 
 function App() {
+    const dateRef = useRef(null);
   const [startDate, setStartDate] = useState(
     new Date().toISOString().slice(0, 10)
   )
@@ -60,6 +61,7 @@ function App() {
     })
     setChecked(newChecked)
   }
+  console.log(dateRef)
 
   const handleFilter = () => {
     if (new Date(startDate) >= new Date(endDate)) {
@@ -100,9 +102,11 @@ function App() {
           onChange={(e) => setStartDate(e.target.value)}
         />
         <input
+          ref={dateRef}
           disabled={filtered}
           type="date"
           id="enddate"
+          onClick={() =>{dateRef.current.showPicker()}}
           value={endDate}
           className={style.date}
           onChange={(e) => setEndDate(e.target.value)}
